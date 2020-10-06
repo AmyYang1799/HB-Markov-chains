@@ -9,7 +9,7 @@ def open_and_read_file(file_path):
     Takes a string that is a file path, opens the file, and turns
     the file's contents as one string of text.
     """
-    contents = open("green-eggs.txt").read()
+    contents = open(file_path).read()
 
     return contents
 
@@ -41,7 +41,14 @@ def make_chains(text_string):
 
     chains = {}
 
-    # your code goes here
+    words = text_string.split()
+
+    for i in range(len(words)-2):
+        values = []
+        key = tuple(words[i], words[i + 1])
+        values.append(words[i +2])
+
+        chains[key] = values
 
     return chains
 
