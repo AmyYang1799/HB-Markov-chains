@@ -43,6 +43,8 @@ def make_chains(text_string):
 
     words = text_string.split()
 
+    words.append(None)
+
     for i in range(len(words)-2):
         key = (words[i], words[i + 1])
         if key not in chains:
@@ -57,13 +59,23 @@ def make_chains(text_string):
 def make_text(chains):
     """Return text from chains."""
 
-    words = [] #first 2 items will be link
-    for key, value in chains:
-        key = choice([key])
-        words.extend(list(key))
-         = choice(chains[key])
-        print(words)
-        break
+    key = choice(list(chains.keys()))  #get starting key from list of keys
+    words = [key[0],key[1]]             #starting words
+    next_word = choice(chains[key])
+    
+    while next_word is not None:
+        words.append(next_word) # add next_word to established list
+        key = (key[1], next_word)   #find next key
+        next_word = choice(chains[key])    #find new nextword
+    
+    return ' '.join(words)
+    
+    # for key, value in chains:
+    #     key = choice([key])
+    #     words.extend(list(key))
+    #      = choice(chains[key])
+    #     print(words)
+    #     break
     #for 
         #words.append(next)
         #key = (words[1], next)
